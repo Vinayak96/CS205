@@ -1,0 +1,4 @@
+for file in *;
+do echo "Creating directory ${file%.*} for file $file ..."
+mkdir "${file%.*}"| mv $file "${file%.*}";
+done
