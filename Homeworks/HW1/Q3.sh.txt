@@ -1,0 +1,1 @@
+tr " " "\n" < text1.txt | sort | uniq | wc -l

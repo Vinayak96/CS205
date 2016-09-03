@@ -1,0 +1,1 @@
+tail *.txt -n -5|grep -v '.txt'> allmixedLast5.txt
