@@ -29,6 +29,9 @@ ALLOWED_HOSTS = []
 
 GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyDmWl3E-FSAOasHw5Pu4dGqcAWD71PQQv8'
 GEOPOSITION_MAP_WIDGET_HEIGHT = '240'
+
+##import django.contrib.auth
+##django.contrib.auth.LOGIN_URL = '/'
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admindocs',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +61,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

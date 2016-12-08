@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">{% load static %} 
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Parallax Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'yellow_line/css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'yellow_line/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function(){
+        $(".my-search-form").submit(function(e){
+        e.preventDefault();
+        var newAction = $("#search").val();
+        newAction = "/yellow_line/" + newAction + ".html";
+        window.location = newAction;
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav class="gray" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="/yellow_line/" class="brand-logo"><img src="{% static 'yellow_line/yellowlinelogo2.png' %}"></a>
+      <!-- <div class="right">
+        <form class="my-search-form" action="#">
+          <div class="input-field">
+            <input id="search" type="search" required>
+            <label for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+          </div>
+        </form>
+      </div> -->
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <nav style="width: 70%; margin:0px auto; margin-top: 3%; margin-bottom: 3%; background-color: #FD9848;">
+    <div class="nav-wrapper">
+      <form class="my-search-form" action="#">
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container" id="header">
+    <div class="row">
+      <div class="col s6">
+        <h3>Events</h3>
+      </div>
+      <div class="col s6" id="sort by">
+        <ul class="right hide-on-med-and-down">
+          <li>
+        <!-- Dropdown Trigger -->
+  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Sort By</a>
+
+  <!-- Dropdown Structure -->
+  <ul id='dropdown1' class='dropdown-content'>
+    <li><a href="/yellow_line/displayname.html">Name</a></li>
+    <li><a href="/yellow_line/displaydate.html">Date</a></li>
+    <li><a href="#!">Location</a></li>
+    <li><a href="/yellow_line/displayvenue.html">Venue</a></li>
+    <li><a href="/yellow_line/displaycategory.html">Category</a></li>
+  </ul>
+        </ul>
+      </div>
+      </div>
+    </div>
+
+
+  <div class="container" id="sort attr">
+     <a class="waves-effect waves-light btn" href="/yellow_line/Art.html">Art</a>
+     <a class="waves-effect waves-light btn" href="/yellow_line/Food.html">Food</a>
+     <a class="waves-effect waves-light btn" href="/yellow_line/Music.html">Music</a>
+     <a class="waves-effect waves-light btn" href="/yellow_line/Shopping.html">Shopping</a>
+     <a class="waves-effect waves-light btn" href="/yellow_line/Theatre.html">Theatre</a>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+      <!--   Icon Section   -->
+      <div class="row">
+      {% for e in event_list %}
+        <!--Event-->
+        <div class="col s4">
+          <div class="card small sticky-action">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="{% static 'yellow_line/music.jpg' %}">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4"><p class="flow-text">{{ e.event_name }}</p><i class="material-icons right">more_vert</i></span>
+              <p><a href="#">This is a link</a></p>
+            </div>
+          <div class="card-action" style="height: 20%; margin: 0px auto" >
+            <div class="chip">
+              {{ e.event_category }}
+            </div>
+          </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">{{ e.event_name }}<i class="material-icons right">close</i></span>
+              <p><b>Date and time: </b>{{ e.event_date}}<br>
+                <b>Venue: </b>{{ e.event_location }}<br>
+                <b>Nearest metro station: </b>{{ e.event_metro }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+
+
+  <footer class="page-footer amber darken-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Company Bio</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'yellow_line/js/materialize.js' %}"></script>
+  <script src="{% static 'yellow_line/js/init.js' %}"></script>
+  <script>$(document).ready(function() {
+    $('select').material_select();
+  });</script>
+
+  </body>
+</html>
