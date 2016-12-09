@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta name="google-signin-client_id" content="66927250814-m0m7nquvfrsj9ef8ae0eoojt5i7t6e69.apps.googleusercontent.com">
-  <title>Login: The Yellow Line</title>
+  <title>Sign Up: The Yellow Line</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -34,6 +34,12 @@
       	</div>
         <div class="row">
           <div class="input-field col s6 offset-s3">
+          <input id="name" type="text" class="validate">
+          <label for="email">Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 offset-s3">
           <input id="email" type="text" class="validate">
           <label for="email">Ashoka Email ID</label>
         </div>
@@ -44,40 +50,22 @@
           <label for="password">Password</label>
         </div>
       </div>
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <input id="password2" type="password" class="validate">
+          <label for="password2">Re-enter Password</label>
+        </div>
+      </div>
         <div class="row">
           <div class="col s4"></div>
           <div class="col s4 center">
-          <a class="waves-effect waves-light btn" href="/yellow_line/Art.html">Login</a>
-          <a class="waves-effect waves-light btn" href="/yellow_line/Art.html">Sign Up</a>
+          <a class="waves-effect waves-light btn" href="/yellow_line/Art.html">Register</a>
+          <a class="waves-effect waves-light btn" href="/yellow_line/Art.html">Clear</a>
           </div>
           <div class="col s4"></div>
         </div>
 </div>
-        <div class="row center">
-<div id="my-signin2"></div>
-  <script>
-    function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    }
-    function onFailure(error) {
-      console.log(error);
-    }
-    function renderButton() {
-      gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        'width': 240,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-      });
-    }
-  </script>
 
-  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-        <br><br>
-      </div>
     </div>
   </div>
 

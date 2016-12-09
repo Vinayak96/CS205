@@ -13,7 +13,7 @@ class Event(models.Model):
     event_category=models.CharField(max_length=20,choices=category,default='Null')
     event_website=models.CharField(max_length=200,blank=True)
     event_metro=models.CharField(max_length=200,blank=True)
-    event_venue=models.CharField(max_length=200,blank=True).
+    event_venue=models.CharField(max_length=200,blank=True)
     event_paid=models.CharField(max_length=20,choices=paid,default="Null")
     
 class Location(models.Model):

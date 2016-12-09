@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>Parallax Template - Materialize</title>
+  <title>Events: The Yellow Line</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -30,35 +30,23 @@
   <nav class="gray" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="/yellow_line/" class="brand-logo"><img src="{% static 'yellow_line/yellowlinelogo2.png' %}"></a>
-      <!-- <div class="right">
+      <div class="right nav-wrapper hide-on-med-and-down">
         <form class="my-search-form" action="#">
           <div class="input-field">
-            <input id="search" type="search" required>
-            <label for="search"><i class="material-icons">search</i></label>
-            <i class="material-icons">close</i>
-          </div>
-        </form>
-      </div> -->
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-
-  <nav style="width: 70%; margin:0px auto; margin-top: 3%; margin-bottom: 3%; background-color: #FD9848;">
-    <div class="nav-wrapper">
-      <form class="my-search-form" action="#">
-        <div class="input-field">
-          <input id="search" type="search" required>
-          <label for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
+          <i class="material-icons prefix">search</i>
+          <input id="search" type="search" class="validate" required>
+          <label for="search">Search</label>
         </div>
-      </form>
+        </form>
+      </div>
+      <i class="material-icons">perm_identity</i>
     </div>
   </nav>
 
   <div class="container" id="header">
     <div class="row">
       <div class="col s6">
-        <h3>Events</h3>
+        <h4>Events</h4>
       </div>
       <div class="col s6" id="sort by">
         <ul class="right hide-on-med-and-down">
@@ -96,13 +84,12 @@
       {% for e in event_list %}
         <!--Event-->
         <div class="col s4">
-          <div class="card small sticky-action">
+          <div class="card small sticky-action hoverable">
             <div class="card-image waves-effect waves-block waves-light">
               <img class="activator" src="{% static 'yellow_line/music.jpg' %}">
             </div>
             <div class="card-content">
               <span class="card-title activator grey-text text-darken-4"><p class="flow-text">{{ e.event_name }}</p><i class="material-icons right">more_vert</i></span>
-              <p><a href="#">This is a link</a></p>
             </div>
           <div class="card-action" style="height: 20%; margin: 0px auto" >
             <div class="chip">
@@ -115,8 +102,8 @@
                 <b>Venue: </b>{{ e.event_location }}<br>
                 <b>Nearest metro station: </b>{{ e.event_metro }}</p>
             </div>
-          </div>
         </div>
+      </div>
       {% endfor %}
 
     </div>
