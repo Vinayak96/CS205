@@ -4,10 +4,11 @@ from geoposition.fields import GeopositionField
 # Create your models here.
 
 class Event(models.Model):
+
     def __str__(self):
         return self.event_name
     category=(('Art','Art'),('Food','Food'),('Music','Music'),('Shopping','Shopping'),('Theatre','Theatre'))
-    paid=(('Paid','Paid'),('Free','Free'))
+    paid=(('Paid','Paid'),('Free','Free')) 
     event_name=models.CharField(max_length=200)
     event_date=models.DateTimeField('event date')
     event_category=models.CharField(max_length=20,choices=category,default='Null')
