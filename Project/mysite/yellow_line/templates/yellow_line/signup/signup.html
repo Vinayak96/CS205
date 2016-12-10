@@ -1,27 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">{% load static %} 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <meta name="google-signin-client_id" content="66927250814-m0m7nquvfrsj9ef8ae0eoojt5i7t6e69.apps.googleusercontent.com">
   <title>Sign Up: The Yellow Line</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'yellow_line/css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'yellow_line/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
   <nav class="gray" role="navigation">
     <div class="nav-wrapper container">
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
 
@@ -29,9 +20,10 @@
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-       <!--  <div class="row center">
-        	<img class="responsive-img" src="yellowlinelogo.png">
-      	</div>
+        <div class="row center">
+          <img class="responsive-img" src="{% static 'yellow_line/yellowlinelogo.png' %}">
+        </div>
+        <!--
         <div class="row">
           <div class="input-field col s6 offset-s3">
           <input id="name" type="text" class="validate">
