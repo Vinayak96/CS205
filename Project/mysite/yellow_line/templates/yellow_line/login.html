@@ -48,36 +48,12 @@
           <div class="col s4"></div>
           <div class="col s4 center">
           <a class="waves-effect waves-light btn" href="/yellow_line/Art.html">Login</a>
-          <a class="waves-effect waves-light btn" href="/yellow_line/Art.html">Sign Up</a>
+          <a class="waves-effect waves-light btn" href="signup.html">Sign Up</a>
           </div>
           <div class="col s4"></div>
         </div>
 </div>
         <div class="row center">
-<div id="my-signin2"></div>
-  <script>
-    function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    }
-    function onFailure(error) {
-      console.log(error);
-    }
-    function renderButton() {
-      gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        'width': 240,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-      });
-    }
-  </script>
-
-  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-        <br><br>
-      </div>
     </div>
   </div>
 

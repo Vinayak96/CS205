@@ -1,6 +1,7 @@
 from django.db import models
 from geoposition import Geoposition
 from geoposition.fields import GeopositionField
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Event(models.Model):
@@ -15,6 +16,7 @@ class Event(models.Model):
     event_metro=models.CharField(max_length=200,blank=True)
     event_venue=models.CharField(max_length=200,blank=True)
     event_paid=models.CharField(max_length=20,choices=paid,default="Null")
+    event_image=models.ImageField(upload_to='event_images', blank=False, default='/static/yellow_line/default.png')
     
 class Location(models.Model):
     """
@@ -32,6 +34,12 @@ class PaidEvent(models.Model):
         return({'event_paid':'Paid'})
     bms = models.ForeignKey(Event,on_delete=models.CASCADE,limit_choices_to= limit())
     event_bms=models.CharField(max_length=200,default=" ",blank=False)
+
+class UserProfile(models.Model):
+    def __unicode__(self):
+        return self.user.username
+
+    user = models.OneToOneField(User)
 
 
 
