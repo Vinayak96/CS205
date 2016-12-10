@@ -9,6 +9,7 @@ class Event(models.Model):
     """
     def __str__(self):
         return self.event_name
+<<<<<<< HEAD
 #All possible Event categories
     category=(('Art','Art'),('Food','Food'),('Music','Music'),('Shopping','Shopping'),('Theatre','Theatre'))       
     paid=(('Paid','Paid'),('Free','Free'))
@@ -28,6 +29,18 @@ class Event(models.Model):
     event_paid=models.CharField(max_length=20,choices=paid,default="Null",help_text="Please choose if the event is paid or free.")          
     class Meta:
         app_label = "yellow_line"
+=======
+    category=(('Art','Art'),('Food','Food'),('Music','Music'),('Shopping','Shopping'),('Theatre','Theatre'))
+    paid=(('Paid','Paid'),('Free','Free')) 
+    event_name=models.CharField(max_length=200)
+    event_date=models.DateTimeField('event date')
+    event_category=models.CharField(max_length=20,choices=category,default='Null')
+    event_website=models.CharField(max_length=200,blank=True)
+    event_metro=models.CharField(max_length=200,blank=True)
+    event_venue=models.CharField(max_length=200,blank=True)
+    event_paid=models.CharField(max_length=20,choices=paid,default="Null")
+    event_image=models.ImageField(upload_to='/static/yellow_line/event_images', blank=True)
+>>>>>>> origin/master
     
 #Gets the location of the venue of the event
 class Location(models.Model):                                 

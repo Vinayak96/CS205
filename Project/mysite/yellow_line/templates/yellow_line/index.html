@@ -79,6 +79,7 @@
 
   <div class="container">
     <div class="section">
+      {% if event_list %}
       <!--   Icon Section   -->
       <div class="row">
       {% for e in event_list %}
@@ -86,7 +87,11 @@
         <div class="col s4">
           <div class="card small sticky-action hoverable">
             <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{{ e.event_image }}">
+              {% if e.event_image %}
+              <img class="activator" src="/static/yellow_line/{{ e.event_image }}">
+              {% else %}
+              <img class="activator" src="{% static 'yellow_line/default.png' %}">
+              {% endif %}
             </div>
             <div class="card-content">
               <span class="card-title activator grey-text text-darken-4"><p class="flow-text">{{ e.event_name }}</p><i class="material-icons right">more_vert</i></span>
@@ -95,16 +100,30 @@
             <div class="chip">
               {{ e.event_category }}
             </div>
+            <div class="chip">
+              {{ e.event_date|date }}
+            </div>
           </div>
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4">{{ e.event_name }}<i class="material-icons right">close</i></span>
               <p><b>Date and time: </b>{{ e.event_date}}<br>
-                <b>Venue: </b>{{ e.event_location }}<br>
+                <b>Venue: </b>{{ e.event_venue }}<br>
                 <b>Nearest metro station: </b>{{ e.event_metro }}</p>
+                {% if e.event_website %}
+                <a href="{{ e.event_website }}"><i class="material-icons">info_outline</i></a>
+                {% endif %}
+                {% if e.event_bms %}
+                <a href="{{ e.event_bms }}"><i class="material-icons">payment</i></a>
+                {% endif %}
             </div>
         </div>
       </div>
       {% endfor %}
+      {% else %}
+
+      <p>No events available</p>
+
+      {% endif %}
 
     </div>
   </div>
