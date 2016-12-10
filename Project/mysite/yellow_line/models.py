@@ -57,13 +57,11 @@ class PaidEvent(models.Model):
 
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
-    def __unicode__(self):
-        return self.user.username
     user = models.OneToOneField(User)
 
     # The additional attributes we wish to include.
-    uid = models.CharField(max_length=15, blank=True)
-    picture = models.ImageField(upload_to='profile_images', blank=True)
+    # uid = models.CharField(max_length=15, blank=True)
+    # picture = models.ImageField(upload_to='profile_images', blank=True)
 
     # Override the __unicode__() method to return out something meaningful!
     def __unicode__(self):
