@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import *
+from yellow_line.models import Event,PaidEvent,Location
 from django.template import loader
 # Create your views here.
 from django.http import HttpResponse
@@ -8,6 +8,10 @@ from .forms import UserForm, UserProfileForm
 ##from .forms import searchform
 
 def index(request):
+    """
+    Creates a list of all events in the database and returns it,
+    related to :model: 'yellow_line.Event'
+    """
     event_list = Event.objects.all()
     template=loader.get_template('yellow_line/index.html')
     context ={
@@ -16,6 +20,14 @@ def index(request):
     return HttpResponse(template.render(context,request))
 
 def displayname(request):
+    """
+    Creates a list of all events, ordered by name,related to
+
+    :model:'yellow_line.Event'
+
+    :template:'yellow_line/index.html'
+
+    """
     event_list = Event.objects.order_by('event_name')
     template=loader.get_template('yellow_line/index.html')
     context ={
@@ -24,6 +36,10 @@ def displayname(request):
     return HttpResponse(template.render(context,request))
 
 def displaydate(request):
+    """
+    Creates a list of all events, ordered by date,
+    related to :model: 'yellow_line.Event'
+    """
     event_list = Event.objects.order_by('event_date')
     template=loader.get_template('yellow_line/index.html')
     context ={
@@ -32,6 +48,10 @@ def displaydate(request):
     return HttpResponse(template.render(context,request))
 
 def displaycategory(request):
+    """
+    Creates a list of all events, ordered by category,
+    related to :model: 'yellow_line.Event'
+    """
     event_list = Event.objects.order_by('event_category')
     template=loader.get_template('yellow_line/index.html')
     context ={
@@ -41,6 +61,7 @@ def displaycategory(request):
     
 
 def displayvenue(request):
+    """ Creates a list of all events, ordered by venue """
     event_list = Event.objects.order_by('event_venue')
     template=loader.get_template('yellow_line/index.html')
     context ={
@@ -50,6 +71,10 @@ def displayvenue(request):
 
 
 def searchcategory(request, a):
+    """
+    Searches for input value across all fields in the table,
+    related to :model: 'yellow_line.Event'
+    """
     event_list = Event.objects.filter(Q(event_category__contains = a) | Q(event_name__contains= a) | Q(event_venue__contains = a))
     template=loader.get_template('yellow_line/index.html')
     context ={
@@ -175,7 +200,3 @@ def signup(request):
 ##    'home.html',
 ##    { 'user': request.user }
 ##    )
-
-
-    
-            
