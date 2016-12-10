@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="google-signin-client_id" content="66927250814-m0m7nquvfrsj9ef8ae0eoojt5i7t6e69.apps.googleusercontent.com">
+  <title>Sign Up: The Yellow Line</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="gray" role="navigation">
+    <div class="nav-wrapper container">
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+       <!--  <div class="row center">
+        	<img class="responsive-img" src="yellowlinelogo.png">
+      	</div>
+        <div class="row">
+          <div class="input-field col s6 offset-s3">
+          <input id="name" type="text" class="validate">
+          <label for="email">Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 offset-s3">
+          <input id="email" type="text" class="validate">
+          <label for="email">Ashoka Email ID</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <input id="password2" type="password" class="validate">
+          <label for="password2">Re-enter Password</label>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col s4"></div>
+          <div class="col s4 center">
+          <a class="waves-effect waves-light btn" href="/yellow_line/Art.html">Register</a>
+          <a class="waves-effect waves-light btn" href="/yellow_line/Art.html">Clear</a>
+          </div>
+          <div class="col s4"></div>
+        </div> -->
+
+        {% if registered %}
+        Rango says: <strong>thank you for registering!</strong>
+        <a href="/yellow_line/">Return to the homepage.</a><br />
+        {% else %}
+        Rango says: <strong>register here!</strong><br />
+
+        <form id="user_form" method="post" action="/yellow_line/register/"
+                enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <!-- Display each form. The as_p method wraps each element in a paragraph
+                 (<p>) element. This ensures each element appears on a new line,
+                 making everything look neater. -->
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+
+            <!-- Provide a button to click to submit the form. -->
+            <input type="submit" name="submit" value="Register" />
+        </form>
+        {% endif %}
+
+</div>
+
+    </div>
+  </div>
+
+
+
+  <footer class="page-footer amber darken-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Company Bio</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  </body>
+</html>

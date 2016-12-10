@@ -7,5 +7,5 @@ urlpatterns = [
     url(r'displayvenue.html',views.displayvenue,name='displayvenue'),
     url(r'displaycategory.html',views.displaycategory,name='displaycategory'),
     url(r'search/(?P<a>[\w ]+).html',views.searchcategory,name='searchcategory'),
-    url(r'^signup/$', views.signup, name='signup'),
+    url(r'signup.html', views.signup, name='signup'),
     ]

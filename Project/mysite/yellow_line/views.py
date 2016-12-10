@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from yellow_line.models import *
-from django.template import loader
+from django.template import loader, RequestContext
 # Create your views here.
 from django.http import HttpResponse
 from django.db.models import Q
 from .forms import UserForm, UserProfileForm
+
 ##from .forms import searchform
 
 def index(request):
@@ -138,7 +139,7 @@ def signup(request):
 
     # Render the template depending on the context.
     return render_to_response(
-            'yellow_line/signup.html',
+            'yellow_line/signup/signup.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered},
             context)
 
