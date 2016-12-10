@@ -5,6 +5,7 @@ from django.template import loader, RequestContext
 from django.http import HttpResponse
 from django.db.models import Q
 from .forms import UserForm
+from django.views.decorators.csrf import csrf_exempt
 
 ##from .forms import searchform
 
@@ -83,6 +84,7 @@ def searchcategory(request, a):
         }
     return HttpResponse(template.render(context, request))
 
+@csrf_exempt
 def signup(request):
     # Like before, get the request's context.
     context = RequestContext(request)
@@ -96,10 +98,9 @@ def signup(request):
         # Attempt to grab information from the raw form information.
         # Note that we make use of both UserForm and UserProfileForm.
         user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
 
         # If the two forms are valid...
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid():
             # Save the user's form data to the database.
             user = user_form.save()
 
