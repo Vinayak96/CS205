@@ -17,7 +17,7 @@ class Event(models.Model):
     event_metro=models.CharField(max_length=200,blank=True)
     event_venue=models.CharField(max_length=200,blank=True)
     event_paid=models.CharField(max_length=20,choices=paid,default="Null")
-    event_image=models.ImageField(upload_to='event_images', blank=False, default='/static/yellow_line/default.png')
+    event_image=models.ImageField(upload_to='/static/yellow_line/event_images', blank=True)
     
 class Location(models.Model):
     """

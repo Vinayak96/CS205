@@ -18,7 +18,8 @@ class EventAdmin(admin.ModelAdmin):
         ('Nearest Metro Station',{'fields':['event_metro']}),
         ('Category',{'fields':['event_category']}),
         ('Webpage',{'fields':['event_website']}),
-        ('Paid Event',{'fields':['event_paid']})
+        ('Paid Event',{'fields':['event_paid']}),
+        ('Event Image',{'fields':['event_image']})
         
     ]
     inlines =[LocationInline]
