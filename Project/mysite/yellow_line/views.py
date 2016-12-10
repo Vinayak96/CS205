@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from yellow_line.models import Event,PaidEvent,Location
+from yellow_line.models import *
 from django.template import loader
 # Create your views here.
 from django.http import HttpResponse
@@ -128,7 +128,7 @@ def signup(request):
         # Print problems to the terminal.
         # They'll also be shown to the user.
         else:
-            print user_form.errors, profile_form.errors
+            print (user_form.errors, profile_form.errors)
 
     # Not a HTTP POST, so we render our form using two ModelForm instances.
     # These forms will be blank, ready for user input.
