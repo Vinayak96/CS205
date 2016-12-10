@@ -1,6 +1,8 @@
 from django.db import models
 from geoposition import Geoposition
 from geoposition.fields import GeopositionField
+from django.contrib.auth.models import User
+
 # Create your models here.
 #Class to store all event information
 class Event(models.Model):                                     
@@ -9,7 +11,7 @@ class Event(models.Model):
     """
     def __str__(self):
         return self.event_name
-<<<<<<< HEAD
+
 #All possible Event categories
     category=(('Art','Art'),('Food','Food'),('Music','Music'),('Shopping','Shopping'),('Theatre','Theatre'))       
     paid=(('Paid','Paid'),('Free','Free'))
@@ -32,7 +34,6 @@ class Event(models.Model):
     class Meta:
         app_label = "yellow_line"
 
->>>>>>> origin/master
     
 #Gets the location of the venue of the event
 class Location(models.Model):                                 
@@ -55,16 +56,9 @@ class PaidEvent(models.Model):
     event_bms=models.CharField(max_length=200,default=" ",blank=False)                #Link to ticketbooking page
 
 class UserProfile(models.Model):
-<<<<<<< HEAD
     # This line is required. Links UserProfile to a User model instance.
-||||||| merged common ancestors
     def __unicode__(self):
         return self.user.username
-
-=======
-    def __unicode__(self):
-        return self.user.username
->>>>>>> 4d4b24a1074642412234e3cdc58b313671261de4
     user = models.OneToOneField(User)
 
     # The additional attributes we wish to include.
