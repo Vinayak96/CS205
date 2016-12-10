@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Event,PaidEvent,Location
+from .models import Event,PaidEvent,Location, UserProfile
 
 class LocationInline(admin.StackedInline):
     model= Location
@@ -30,3 +30,4 @@ class EventAdmin(admin.ModelAdmin):
 
 admin.site.register(Event,EventAdmin)
 admin.site.register(PaidEvent)
+admin.site.register(UserProfile)
