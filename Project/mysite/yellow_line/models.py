@@ -1,25 +1,36 @@
 from django.db import models
 from geoposition import Geoposition
 from geoposition.fields import GeopositionField
-from django.contrib.auth.models import User
 # Create your models here.
-
-class Event(models.Model):
-
+#Class to store all event information
+class Event(models.Model):                                     
+    """
+    Creates a table of all event fields in the database
+    """
     def __str__(self):
         return self.event_name
-    category=(('Art','Art'),('Food','Food'),('Music','Music'),('Shopping','Shopping'),('Theatre','Theatre'))
-    paid=(('Paid','Paid'),('Free','Free')) 
-    event_name=models.CharField(max_length=200)
-    event_date=models.DateTimeField('event date')
-    event_category=models.CharField(max_length=20,choices=category,default='Null')
-    event_website=models.CharField(max_length=200,blank=True)
-    event_metro=models.CharField(max_length=200,blank=True)
-    event_venue=models.CharField(max_length=200,blank=True)
-    event_paid=models.CharField(max_length=20,choices=paid,default="Null")
-    event_image=models.ImageField(upload_to='event_images', blank=False, default='/static/yellow_line/default.png')
+#All possible Event categories
+    category=(('Art','Art'),('Food','Food'),('Music','Music'),('Shopping','Shopping'),('Theatre','Theatre'))       
+    paid=(('Paid','Paid'),('Free','Free'))
+#Name of the event
+    event_name=models.CharField(max_length=200,help_text="Please enter name of the event and make sure it begins with a capital letter")                                     
+#Date of the event
+    event_date=models.DateTimeField('event date',help_text="Please choose the date of the event.")
+#Category of the event
+    event_category=models.CharField(max_length=20,choices=category,default='Null', help_text="Please choose what category the event falls under.")
+#Website of the event
+    event_website=models.CharField(max_length=200,blank=True,help_text="Please enter a link to the event website or Facebook page." )
+#Nearest Metro Station to the Event
+    event_metro=models.CharField(max_length=200,blank=True,help_text="Please enter the name of the nearest metro station")
+ #Venue of the event
+    event_venue=models.CharField(max_length=200,blank=True,help_text="Please enter the name of the venue of the event.")
+#Stores whether event is paid or unpaid
+    event_paid=models.CharField(max_length=20,choices=paid,default="Null",help_text="Please choose if the event is paid or free.")          
+    class Meta:
+        app_label = "yellow_line"
     
-class Location(models.Model):
+#Gets the location of the venue of the event
+class Location(models.Model):                                 
     """
     Admin stores the location of the event using the geoposition app
     Parameters:
@@ -27,19 +38,20 @@ class Location(models.Model):
     """
     venue=models.ForeignKey(Event,on_delete=models.CASCADE)
     event_position=GeopositionField()
-    
-class PaidEvent(models.Model):
+
+#Class to get the ticketbooking link for a paid event    
+class PaidEvent(models.Model):                               
     def __str__(self):
         return self.event_bms
     def limit():
         return({'event_paid':'Paid'})
     bms = models.ForeignKey(Event,on_delete=models.CASCADE,limit_choices_to= limit())
-    event_bms=models.CharField(max_length=200,default=" ",blank=False)
+#Link to ticketbooking page
+    event_bms=models.CharField(max_length=200,default=" ",blank=False)                #Link to ticketbooking page
 
 class UserProfile(models.Model):
     def __unicode__(self):
         return self.user.username
-
     user = models.OneToOneField(User)
 
 
@@ -57,3 +69,4 @@ class UserProfile(models.Model):
 ##    def searchName(self,a):
 ##        return Event.objects.filter(event_name = a)
 ##
+
