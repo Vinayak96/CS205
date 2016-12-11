@@ -2,7 +2,7 @@ from django.db import models
 from geoposition import Geoposition
 from geoposition.fields import GeopositionField
 from django.contrib.auth.models import User
-
+from multiselectfield import MultiSelectField
 # Create your models here.
 #Class to store all event information
 class Event(models.Model):                                     
@@ -56,15 +56,18 @@ class PaidEvent(models.Model):
     event_bms=models.CharField(max_length=200,default=" ",blank=False)                #Link to ticketbooking page
 
 class UserProfile(models.Model):
+    category=(('Art','Art'),('Food','Food'),('Music','Music'),('Shopping','Shopping'),('Theatre','Theatre'))
+
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
+    
 
     # The additional attributes we wish to include.
-    # uid = models.CharField(max_length=15, blank=True)
+    interest = MultiSelectField(max_length=20,choices=category,default='Null', help_text="Please choose what categories you like")
     # picture = models.ImageField(upload_to='profile_images', blank=True)
 
     # Override the __unicode__() method to return out something meaningful!
-    def __unicode__(self):
+    def __str__(self):
         return self.user.first_name
 
 
@@ -82,4 +85,3 @@ class UserProfile(models.Model):
 ##    def searchName(self,a):
 ##        return Event.objects.filter(event_name = a)
 ##
-
