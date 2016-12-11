@@ -56,15 +56,19 @@ class PaidEvent(models.Model):
     event_bms=models.CharField(max_length=200,default=" ",blank=False)                #Link to ticketbooking page
 
 class UserProfile(models.Model):
-    category=(('Art','Art'),('Food','Food'),('Music','Music'),('Shopping','Shopping'),('Theatre','Theatre'))
+    #category=(('Art','Art'),('Food','Food'),('Music','Music'),('Shopping','Shopping'),('Theatre','Theatre'))
 
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
     
 
     # The additional attributes we wish to include.
-    interest = MultiSelectField(max_length=20,choices=category,default='Null', help_text="Please choose what categories you like")
-    # picture = models.ImageField(upload_to='profile_images', blank=True)
+    art = models.BooleanField(default=False)
+    food = models.BooleanField(default=False)
+    music = models.BooleanField(default=False)
+    shopping = models.BooleanField(default=False)
+    theatre = models.BooleanField(default=False)
+    # picture = models.ImageField(upload_to='profile_images', required=True)
 
     # Override the __unicode__() method to return out something meaningful!
     def __str__(self):
