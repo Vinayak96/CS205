@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="{% static 'yellow_line/css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="{% static 'yellow_line/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
 </head>
 <body>
   <nav class="gray" role="navigation">
@@ -60,7 +61,6 @@
         {% if registered %}
         Thank you for registering. Click <a href="/yellow_line/">here</a> to access the list of events.<br><br>
         {% else %}
-        yellow_line says: <strong>register here!</strong><br />
 
         <form id="user_form" method="post" action="/yellow_line/signup/" enctype="multipart/form-data">
 
@@ -69,10 +69,21 @@
             <!-- Display each form. The as_p method wraps each element in a paragraph
                  (<p>) element. This ensures each element appears on a new line,
                  making everything look neater. -->
-            {{ user_form.as_p }}
-            Check event categories that interest you:
+          <div class="row">
+            <div class="col s2"></div>
+            <div class="col s8">
+            <div style="color:black">
+          <label for="username">Username* (Letters, digits and @/./+/-/_ only)</label>{{ user_form.username }}<br>
+          <label for="first_name">First Name</label>{{ user_form.first_name }}<br>
+          <label for="last_name">Last Name</label>{{ user_form.last_name }}<br>
+          <label for="email">Email</label>{{ user_form.email }}<br>
+            <label>Check event categories that interest you:</label>
             {{ profile_form.as_table }}
+          </div>
             <br>
+          </div>
+          <div class="col s2"></div>
+        </div>
             <div class="row">
               <div class="col s4"></div>
               <div class="col s4 center">
@@ -86,7 +97,6 @@
           </div>
         </form>
         {% endif %}
-
 </div>
 
     </div>
@@ -115,9 +125,17 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+  <script src="{% static 'yellow_line/js/materialize.js' %}"></script>
+  <script src="{% static 'yellow_line/js/init.js' %}"></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script>
+  $(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+  });
+  </script>
+   <script>$(document).ready(function() {
+    $('select').material_select();
+  });</script>
 
   </body>
 </html>
