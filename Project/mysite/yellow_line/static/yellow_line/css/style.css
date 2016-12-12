@@ -29,6 +29,28 @@ p {
     width: 100%;
   }
 
+[type="checkbox"] + label, label[for="id_art"]{
+  position: relative;
+  padding-left: 10px;
+  cursor: pointer;
+  display: inline-block;
+  height: auto;
+  line-height: auto;
+  font-size: 1rem;
+}
+
+[type="checkbox"] + label::before{
+  content: none;
+}
+
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+  position: relative;
+  left: 0;
+  opacity: 1;
+  transform: scale(1.5);
+  left:5px;
+}
+
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
     position: absolute;
