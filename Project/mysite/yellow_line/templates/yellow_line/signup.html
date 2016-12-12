@@ -64,7 +64,6 @@
 
         <form id="user_form" method="post" action="/yellow_line/signup/" enctype="multipart/form-data">
 
-            {% csrf_token %}
 
             <!-- Display each form. The as_p method wraps each element in a paragraph
                  (<p>) element. This ensures each element appears on a new line,
@@ -77,6 +76,7 @@
           <label for="first_name">First Name</label>{{ user_form.first_name }}<br>
           <label for="last_name">Last Name</label>{{ user_form.last_name }}<br>
           <label for="email">Email</label>{{ user_form.email }}<br>
+          <label for="password">Password</label>{{ user_form.password }}<br>
             <label>Check event categories that interest you:</label>
             {{ profile_form.as_table }}
           </div>
