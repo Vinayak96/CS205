@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">{% load static %}
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
@@ -8,18 +8,14 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'yellow_line/css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'yellow_line/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
   <nav class="gray" role="navigation">
-    <div class="nav-wrapper container">
+    <div class="nav-wrapper container" style="color:white">
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a href="/yellow_line/signup/">Signup</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -30,29 +26,31 @@
       <div class="container">
         <br><br>
         <div class="row center">
-        	<img class="responsive-img" src="yellowlinelogo.png">
+        	<a href="/yellow_line/"><img class="responsive-img" src="{% static 'yellow_line/yellowlinelogo.png' %}"></a>
       	</div>
         <div class="row">
-          <div class="input-field col s6 offset-s3">
-          <input id="email" type="text" class="validate">
-          <label for="email">Ashoka Email ID</label>
+          <div class="col s2"></div>
+          <div class="col s8">
+        <div style="color:black">
+            <form id="login_form" method="post" action="/yellow_line/login/">
+            <label for="username">Username</label>
+            <input id="username" type="text" value=""><br>
+            <label for="password">Password</label>
+            <input id="password" type="password" value=""><br>
+          </div>
+          <div class="col s2"></div>
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6 offset-s3">
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
-        </div>
-      </div>
         <div class="row">
           <div class="col s4"></div>
           <div class="col s4 center">
-          <a class="waves-effect waves-light btn" href="/yellow_line/Art.html">Login</a>
-          <a class="waves-effect waves-light btn" href="signup.html">Sign Up</a>
+          <input class="waves-effect waves-light btn" type="submit" value="submit">Login</input>
+          <a class="waves-effect waves-light btn" href="/yellow_line/signup/">Sign Up</a>
           </div>
           <div class="col s4"></div>
         </div>
-</div>
+          </form>
+        </div>
+      </div>
         <div class="row center">
     </div>
   </div>
@@ -80,8 +78,8 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+  <script src="{% static 'yellow_line/js/materialize.js' %}"></script>
+  <script src="{% static 'yellow_line/js/init.js' %}"></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
 
   </body>

@@ -48,92 +48,24 @@
     </div>
   </nav>
 
-{% if user.is_authenticated %}
-  <div class="container">
-    <div class="section">
-      <h4>Recommended Events</h4>
-      {% if result_list %}
-      <!--   Icon Section   -->
-      <div class="row">
-        {% for e in result_list %}
-        <!--Event-->
-        <div class="col s4">
-          <div class="card small sticky-action hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              {% if e.event_image %}
-              <img class="activator" src="/static/yellow_line/{{ e.event_image }}">
-              {% else %}
-              <img class="activator" src="{% static 'yellow_line/default.png' %}">
-              {% endif %}
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4"><p class="flow-text">{{ e.event_name }}</p></span>
-            </div>
-          <div class="card-action" style="height: 20%; margin: 0px auto" >
-            <div class="chip">
-              {{ e.event_category }}
-            </div>
-            <div class="chip">
-              {{ e.event_date|date }}
-            </div>
-          </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">{{ e.event_name }}<i class="material-icons right">close</i></span>
-              <p><b>Date and time: </b>{{ e.event_date}}<br>
-                <b>Venue: </b>{{ e.event_venue }}<br>
-                <b>Nearest metro station: </b>{{ e.event_metro }}</p>
-                {% if e.event_website %}
-                <a href="{{ e.event_website }}"><i class="material-icons">info_outline</i></a>
-                {% endif %}
-                {% if e.event_bms %}
-                <a href="{{ e.event_bms }}"><i class="material-icons">payment</i></a>
-                {% endif %}
-            </div>
-        </div>
-      </div>
-        {% endfor %}
-      {% else %}
 
-      <p>No recommended events available. Add preferred categories.</p>
-
-      {% endif %}
-
-    </div>
-  </div>
-  {% endif %}
 
   <div class="container" id="header">
     <div class="row">
       <div class="col s6">
-        <h4>Events</h4>
+        <h4>Search Results</h4>
       </div>
       <div class="col s6" id="sort by">
         <ul class="right hide-on-med-and-down">
           <li>
         <!-- Dropdown Trigger -->
-  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Sort By</a>
+  <a class='waves-effect waves-light btn' href='/yellow_line/'>Back to all</a>
 
   <!-- Dropdown Structure -->
-  <ul id='dropdown1' class='dropdown-content'>
-    <li><a href="/yellow_line/displayname.html">Name</a></li>
-    <li><a href="/yellow_line/displaydate.html">Date</a></li>
-    <li><a href="/yellow_line/displayvenue.html">Venue</a></li>
-    <li><a href="/yellow_line/displaycategory.html">Category</a></li>
-  </ul>
         </ul>
       </div>
       </div>
     </div>
-
-
-  <div class="container" id="sort attr">
-     <a class="waves-effect waves-light btn" href="/yellow_line/search/Art.html">Art</a>
-     <a class="waves-effect waves-light btn" href="/yellow_line/search/Food.html">Food</a>
-     <a class="waves-effect waves-light btn" href="/yellow_line/search/Music.html">Music</a>
-     <a class="waves-effect waves-light btn" href="/yellow_line/search/Shopping.html">Shopping</a>
-     <a class="waves-effect waves-light btn" href="/yellow_line/search/Theatre.html">Theatre</a>
-  </div>
-
 
   <div class="container">
     <div class="section">

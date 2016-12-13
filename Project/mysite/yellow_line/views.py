@@ -76,7 +76,7 @@ def searchcategory(request, a):
     related to :model: 'yellow_line.Event'
     """
     event_list = Event.objects.filter(Q(event_category__contains = a) | Q(event_name__contains= a) | Q(event_venue__contains = a))
-    template=loader.get_template('yellow_line/index.html')
+    template=loader.get_template('yellow_line/search.html')
     context ={
         'event_list':event_list,
         }
@@ -184,18 +184,18 @@ def user_logout(request):
     logout(request)
 
     # Take the user back to the homepage.
-    return HttpResponseRedirect('/yellow_line/')
+    return HttpResponseRedirect('/yellow_line/login/')
 
 #customized display when user logs in
 def user_view(request):
     current_user=request.user
-    result_list=list()
+    result_list=[]
     categories = [('Art',current_user.art),('Theatre',current_user.theatre),('Food',current_user.food),('Music',current_user.music),('Shopping',current_user.shopping)]
     for i in range(5):
         result_list.append(query_gen(categories[i]))
     template=loader.get_template('yellow_line/index.html')
     context ={
-        'event_list':result_list,
+        'result_list':result_list,
         }
     return HttpResponse(template.render(context, request))    
 
