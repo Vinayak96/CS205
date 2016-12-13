@@ -137,6 +137,7 @@ def signup(request):
             'yellow_line/signup.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered},context)
 
+@csrf_exempt
 def user_login(request):
     # Like before, obtain the context for the user's request.
     context = RequestContext(request)
@@ -155,16 +156,16 @@ def user_login(request):
         # If we have a User object, the details are correct.
         # If None (Python's way of representing the absence of a value), no user
         # with matching credentials was found.
-        if user:
-            # Is the account active? It could have been disabled.
-            if user.is_active:
-                # If the account is valid and active, we can log the user in.
-                # We'll send the user back to the homepage.
-                login(request, user)
-                return HttpResponseRedirect('/yellow_line')
-            else:
-                # An inactive account was used - no logging in!
-                return HttpResponse("Your Yellow Line account is disabled.")
+        if user is not None:
+            # # Is the account active? It could have been disabled.
+            # if user.is_active:
+            #     # If the account is valid and active, we can log the user in.
+            #     # We'll send the user back to the homepage.
+            login(request, user)
+            return HttpResponseRedirect('/yellow_line/')
+            # else:
+            #     # An inactive account was used - no logging in!
+            #     return HttpResponse("Your Yellow Line account is disabled.")
         else:
             # Bad login details were provided. So we can't log the user in.
             print ("Invalid login details: {0}, {1}".format(username, password))
