@@ -193,9 +193,12 @@ def user_view(request):
     result_list=[]
     categories = [['Art',current_user.userprofile.art],['Theatre',current_user.userprofile.theatre],['Food',current_user.userprofile.food],['Music',current_user.userprofile.music],['Shopping',current_user.userprofile.shopping]]
     for i in range(5):
-        result_list.append(query_gen(categories[i]))
+        if(categories[i][1] == True):
+            result_list.append(query_gen(categories[i][0]))
+
     event_list = Event.objects.all()
     template=loader.get_template('yellow_line/index.html')
+    #res_list= Event.objects.filter(id__in= result_list)
     context ={
         'result_list':result_list,
         'event_list':event_list,
@@ -203,5 +206,4 @@ def user_view(request):
     return HttpResponse(template.render(context, request))    
 
 def query_gen(x):
-    if x[1] is True :
-        return Event.objects.filter(event_category=x[0])
+    return (Event.objects.filter(event_category__exact=x))
