@@ -8,6 +8,7 @@ from django.db.models import Q
 from .forms import *
 from django.views.decorators.csrf import csrf_exempt
 from itertools import chain
+from django.contrib.auth.decorators import login_required
 ##from .forms import searchform
 
 ##def index(request):
@@ -179,7 +180,7 @@ def user_login(request):
         return render_to_response('yellow_line/login.html', {}, context)
 
 # Use the login_required() decorator to ensure only those logged in can access the view.
-#@login_required
+@login_required
 def user_logout(request):
     # Since we know the user is logged in, we can now just log them out.
     logout(request)

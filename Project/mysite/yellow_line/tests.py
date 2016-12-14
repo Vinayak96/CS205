@@ -6,6 +6,7 @@ from .views import *
 from django.contrib import auth
 from django.test import Client
 import unittest
+
 class EventTest(TestCase):
 
     def test_category(self):
@@ -23,7 +24,7 @@ class SimpleTest(TestCase):
     def setUp(self):
         self.client=Client()
 
-    def test_that_user_gets_logged_in(self):
+    def test_that_signed_up_user_gets_logged_in_with_authentication(self):
         response = self.client.post(reverse('yellow_line:signup'),{ 'username':'foo', 'password':'bar'})
         self.assertTemplateUsed(response,'yellow_line/signup.html')
         self.assertEqual(response.status_code, 200)
