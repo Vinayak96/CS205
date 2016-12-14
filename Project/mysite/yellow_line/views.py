@@ -162,7 +162,7 @@ def user_login(request):
             #     # If the account is valid and active, we can log the user in.
             #     # We'll send the user back to the homepage.
             login(request, user)
-            return HttpResponseRedirect('/yellow_line/')
+            return HttpResponseRedirect('/yellow_line/loggedin/')
             # else:
             #     # An inactive account was used - no logging in!
             #     return HttpResponse("Your Yellow Line account is disabled.")
@@ -191,15 +191,17 @@ def user_logout(request):
 def user_view(request):
     current_user=request.user
     result_list=[]
-    categories = [('Art',current_user.art),('Theatre',current_user.theatre),('Food',current_user.food),('Music',current_user.music),('Shopping',current_user.shopping)]
+    categories = [['Art',current_user.userprofile.art],['Theatre',current_user.userprofile.theatre],['Food',current_user.userprofile.food],['Music',current_user.userprofile.music],['Shopping',current_user.userprofile.shopping]]
     for i in range(5):
         result_list.append(query_gen(categories[i]))
+    event_list = Event.objects.all()
     template=loader.get_template('yellow_line/index.html')
     context ={
         'result_list':result_list,
+        'event_list':event_list,
         }
     return HttpResponse(template.render(context, request))    
 
-def query_gen(y,x):
-    if x is True :
-        return Event.objects.filter(event_category=y)
+def query_gen(x):
+    if x[1] is True :
+        return Event.objects.filter(event_category=x[0])

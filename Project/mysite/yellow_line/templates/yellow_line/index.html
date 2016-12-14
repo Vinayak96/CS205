@@ -32,7 +32,7 @@
       <a id="logo-container" href="/yellow_line/" class="brand-logo"><img src="{% static 'yellow_line/yellowlinelogo2.png' %}"></a>
       <div class="right nav-wrapper hide-on-med-and-down">
       {% if user.is_authenticated %}
-      Logged in as {{ user.username }}. <a href="/yellow_line/logout/">Logout?</a>
+      Logged in as {{ user.userprofile }}. <a href="/yellow_line/logout/">Logout?</a>
       {% else %}
       <a href="/yellow_line/login/">Login</a>
       {% endif %}
