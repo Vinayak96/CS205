@@ -10,17 +10,17 @@ from django.views.decorators.csrf import csrf_exempt
 
 ##from .forms import searchform
 
-def index(request):
-    """
-    Creates a list of all events in the database and returns it,
-    related to :model: 'yellow_line.Event'
-    """
-    event_list = Event.objects.all()
-    template=loader.get_template('yellow_line/index.html')
-    context ={
-        'event_list':event_list,
-        }
-    return HttpResponse(template.render(context,request))
+##def index(request):
+##    """
+##    Creates a list of all events in the database and returns it,
+##    related to :model: 'yellow_line.Event'
+##    """
+##    event_list = Event.objects.all()
+##    template=loader.get_template('yellow_line/index.html')
+##    context ={
+##        'event_list':event_list,
+##        }
+##    return HttpResponse(template.render(context,request))
 
 def displayname(request):
     """
@@ -162,7 +162,7 @@ def user_login(request):
             #     # If the account is valid and active, we can log the user in.
             #     # We'll send the user back to the homepage.
             login(request, user)
-            return HttpResponseRedirect('/yellow_line/loggedin/')
+            return HttpResponseRedirect('/yellow_line/')
             # else:
             #     # An inactive account was used - no logging in!
             #     return HttpResponse("Your Yellow Line account is disabled.")
@@ -189,12 +189,13 @@ def user_logout(request):
 
 #customized display when user logs in
 def user_view(request):
-    current_user=request.user
     result_list=[]
-    categories = [['Art',current_user.userprofile.art],['Theatre',current_user.userprofile.theatre],['Food',current_user.userprofile.food],['Music',current_user.userprofile.music],['Shopping',current_user.userprofile.shopping]]
-    for i in range(5):
-        if(categories[i][1] == True):
-            result_list.append(query_gen(categories[i][0]))
+    if(request.user.is_anonymous == False):
+        current_user=request.user
+        categories = [['Art',current_user.userprofile.art],['Theatre',current_user.userprofile.theatre],['Food',current_user.userprofile.food],['Music',current_user.userprofile.music],['Shopping',current_user.userprofile.shopping]]
+        for i in range(5):
+            if(categories[i][1] == True):
+                result_list.append(query_gen(categories[i][0]))
 
     event_list = Event.objects.all()
     template=loader.get_template('yellow_line/index.html')
