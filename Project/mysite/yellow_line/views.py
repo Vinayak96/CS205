@@ -203,4 +203,3 @@ def user_view(request):
 def query_gen(y,x):
     if x is True :
         return Event.objects.filter(event_category=y)
-                                            

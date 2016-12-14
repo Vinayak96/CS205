@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from geoposition import Geoposition
 from geoposition.fields import GeopositionField
 from django.contrib.auth.models import User
@@ -59,7 +60,7 @@ class UserProfile(models.Model):
     #category=(('Art','Art'),('Food','Food'),('Music','Music'),('Shopping','Shopping'),('Theatre','Theatre'))
 
     # This line is required. Links UserProfile to a User model instance.
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User,on_delete=models.CASCADE, parent_link = True)
     
 
     # The additional attributes we wish to include.
