@@ -194,7 +194,8 @@ def user_view(request):
     list3=[]
     list4=[]
     list5=[]
-    if(request.user.is_anonymous == False):
+    result_list=[]
+    if((request.user.is_anonymous == False) and (request.user.is_superuser == False)):
         current_user=request.user
         if(current_user.userprofile.art):
             list1= Event.objects.filter(event_category = 'Art')
@@ -206,7 +207,7 @@ def user_view(request):
             list4 = Event.objects.filter(event_category ='Food')
         if(current_user.userprofile.shopping):
             list5 = Event.objects.filter(event_category ='Shopping')
-    result_list = chain(list1,list2,list3,list4,list5)
+        result_list = chain(list1,list2,list3,list4,list5)
 ##        categories = [['Art',current_user.userprofile.art],['Theatre',current_user.userprofile.theatre],['Food',current_user.userprofile.food],['Music',current_user.userprofile.music],['Shopping',current_user.userprofile.shopping]]
 ##        for i in range(5):
 ##            if(categories[i][1] == True):
@@ -223,3 +224,19 @@ def user_view(request):
 
 ##def query_gen(x):
 ##    return (Event.objects.filter(event_category__exact=x))
+##@csrf_exempt
+##def update_profile(request):
+##
+##    if request.method == 'POST':
+##        form = UpdateProfile(request.POST, instance = request.user)
+##        form.user = request.user
+##        if form.is_valid():
+##            form.save()
+##            return HttpResponseRedirect('/yellow_line')
+##    else:
+##        form = UpdateProfile()
+##    context ={
+##        'form':form
+##        }
+##    template=loader.get_template('yellow_line/updateprofile.html')
+##    return HttpResponse(template.render(context, request))

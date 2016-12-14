@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">{% load static %} 
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Update Profile : The Yellow Line</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'yellow_line/css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'yellow_line/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+</head>
+<body>
+  <nav class="gray" role="navigation">
+    <div class="nav-wrapper container">
+    </div>
+  </nav>
+
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <div class="row center">
+          <a href="/yellow_line/"><img class="responsive-img" src="{% static 'yellow_line/yellowlinelogo.png' %}"></a>
+        </div>
+        <form id="form" method="post" action="/yellow_line/" enctype="multipart/form-data">
+
+
+            <!-- Display each form. The as_p method wraps each element in a paragraph
+                 (<p>) element. This ensures each element appears on a new line,
+                 making everything look neater. -->
+          <div class="row">
+            <div class="col s2"></div>
+            <div class="col s6">
+            <div style="color:black" style="position: relative;">
+          <label for="username">Username* (Letters, digits and @/./+/-/_ only)</label>{{ form.username }}<br>
+          <label for="first_name">First Name</label>{{ form.first_name }}<br>
+          <label for="last_name">Last Name</label>{{ form.last_name }}<br>
+          <label for="email">Email</label>{{ form.email }}<br>
+          <label for="password">Password</label>{{ form.password }}<br>
+            </div>
+            <br>
+          </div>
+          <div class="col s2"></div>
+        </div>
+            <div class="row">
+              <div class="col s4"></div>
+              <div class="col s4 center">
+                <!-- Provide a button to click to submit the form. -->
+            <input class="waves-effect waves-light btn" type="submit" name="Submit" value="Submit"> 
+            </input>
+            <input class="waves-effect waves-light btn" type="reset" name="Reset" value="Clear"> 
+            </input>
+              </div>
+              <div class="col s4"></div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

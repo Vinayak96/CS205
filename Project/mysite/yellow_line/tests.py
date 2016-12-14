@@ -3,6 +3,9 @@ from .models import *
 from django.urls import reverse
 # Create your tests here.
 from .views import *
+from django.contrib import auth
+from django.test import Client
+import unittest
 class EventTest(TestCase):
 
     def test_category(self):
@@ -16,14 +19,18 @@ class EventTest(TestCase):
 
 
 class SimpleTest(TestCase):
+    
     def setUp(self):
-        user = User.objects.create_user('temporary','temporary@gmail.com', 'temp')
+        self.client=Client()
 
-    def test_secure_page(self):
-        self.client.login(username='temporary', password='temporary')
-        response = self.client.get('/yellow_line', follow=True)
-        user = User.objects.get(username='temporary')
-        self.assertEqual(response.context[email],'temporary@gmail.com')
+    def test_that_user_gets_logged_in(self):
+        response = self.client.post(reverse('yellow_line:signup'),{ 'username':'foo', 'password':'bar'})
+        self.assertTemplateUsed(response,'yellow_line/signup.html')
+        self.assertEqual(response.status_code, 200)
+        self.client.login(username='foo', password='bar')
+        user = auth.get_user(self.client)
+        self.assertEqual(user.is_authenticated(),True)
+        self.assertIn('_auth_user_id', self.client.session)
 
     
         
