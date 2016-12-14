@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Q
 from .forms import *
 from django.views.decorators.csrf import csrf_exempt
-
+from itertools import chain
 ##from .forms import searchform
 
 ##def index(request):
@@ -189,13 +189,28 @@ def user_logout(request):
 
 #customized display when user logs in
 def user_view(request):
-    result_list=[]
+    list1=[]
+    list2=[]
+    list3=[]
+    list4=[]
+    list5=[]
     if(request.user.is_anonymous == False):
         current_user=request.user
-        categories = [['Art',current_user.userprofile.art],['Theatre',current_user.userprofile.theatre],['Food',current_user.userprofile.food],['Music',current_user.userprofile.music],['Shopping',current_user.userprofile.shopping]]
-        for i in range(5):
-            if(categories[i][1] == True):
-                result_list.append(query_gen(categories[i][0]))
+        if(current_user.userprofile.art):
+            list1= Event.objects.filter(event_category = 'Art')
+        if(current_user.userprofile.music):
+            list2 = Event.objects.filter(event_category ='Music')
+        if(current_user.userprofile.theatre):
+            list3 = Event.objects.filter(event_category ='Theatre')
+        if(current_user.userprofile.food):
+            list4 = Event.objects.filter(event_category ='Food')
+        if(current_user.userprofile.shopping):
+            list5 = Event.objects.filter(event_category ='Shopping')
+    result_list = chain(list1,list2,list3,list4,list5)
+##        categories = [['Art',current_user.userprofile.art],['Theatre',current_user.userprofile.theatre],['Food',current_user.userprofile.food],['Music',current_user.userprofile.music],['Shopping',current_user.userprofile.shopping]]
+##        for i in range(5):
+##            if(categories[i][1] == True):
+##                result_list.append(query_gen(categories[i][0]))
 
     event_list = Event.objects.all()
     template=loader.get_template('yellow_line/index.html')
@@ -206,5 +221,5 @@ def user_view(request):
         }
     return HttpResponse(template.render(context, request))    
 
-def query_gen(x):
-    return (Event.objects.filter(event_category__exact=x))
+##def query_gen(x):
+##    return (Event.objects.filter(event_category__exact=x))
